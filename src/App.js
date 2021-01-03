@@ -42,6 +42,7 @@ function App() {
   const [email, setEmail] = useState('');
   const [user, setUser] = useState(null);
   const [search, setSearch] = useState('');
+  const [openUpload, setOpenUpload] = useState(false);
 
   useEffect(() => {
     //LISTENER: listens for any authentication change
@@ -92,7 +93,7 @@ function App() {
         var concatArr = restaurantArr.concat(captionArr);
         
         for(var j=0; j<concatArr.length; j++){
-          var word = concatArr[j];
+          var word = concatArr[j].toLowerCase();
           if(word.startsWith(text) ) {
 
             // FOUND WORD
@@ -184,6 +185,20 @@ function App() {
           </form>
         </div>
       </Modal>
+
+
+      <Modal
+        open={openUpload}
+        onClose={() => setOpenUpload(false)}
+      >
+        <div style={modalStyle} className={classes.paper}>
+          {user?.displayName ?(
+            <ImageUpload username={user.displayName} />
+          ) : (
+            <h3>Sorry you need to login to upload</h3>
+          )}
+        </div>
+      </Modal>
       
       <div className="app__header"> 
 
@@ -193,7 +208,9 @@ function App() {
           alt=""
         />
 
-        <input type="search" value={search} onChange={(e) => smartSearch(e.target.value)}/>
+        <input type="search" value={search} onChange={(e) => smartSearch(e.target.value.toLowerCase())}/>
+
+        <Button onClick={() => setOpenUpload(true)}>Upload</Button>
 
       {user ?  (
         <Button onClick={() => auth.signOut()}>Logout</Button>
@@ -215,8 +232,6 @@ function App() {
                 ))
               :
                <p>Zero Results</p>
-
-
               
               :
 
