@@ -34,12 +34,14 @@ function App() {
   const [modalStyle] = useState(getModalStyle);
 
   const [posts, setPosts] = useState([]); 
+  const [searchPosts, setSearchPosts] = useState([]);
   const [open, setOpen] = useState(false);
   const [openSignIn, setOpenSignIn] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [user, setUser] = useState(null);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     //LISTENER: listens for any authentication change
@@ -72,6 +74,38 @@ function App() {
       })))
     }) 
   }, []) //when posts changes,  
+
+  const smartSearch = (text) => {
+    setSearch(text);
+
+    const filteredPosts = [];
+
+    if(text.length >= 3) {
+      console.log("smart search" + JSON.stringify(posts))
+      // smart setSearch
+
+      for(var i=0; i<posts.length; i++) {
+        const obj = posts[i];
+        console.log(JSON.stringify(obj))
+        var restaurantArr = obj.post.restaurant.split(' ');
+        var captionArr = obj.post.caption.split(' ');
+        var concatArr = restaurantArr.concat(captionArr);
+        
+        for(var j=0; j<concatArr.length; j++){
+          var word = concatArr[j];
+          if(word.startsWith(text) ) {
+
+            // FOUND WORD
+            filteredPosts.push(obj);
+            break;
+          }
+        };
+      };
+      setSearchPosts(filteredPosts);
+      console.log(JSON.stringify(filteredPosts))
+
+    }
+  }
 
   const signUp = (event) => {
     event.preventDefault(); // prevent refresh 
@@ -159,6 +193,8 @@ function App() {
           alt=""
         />
 
+        <input type="search" value={search} onChange={(e) => smartSearch(e.target.value)}/>
+
       {user ?  (
         <Button onClick={() => auth.signOut()}>Logout</Button>
           ) : (
@@ -171,11 +207,30 @@ function App() {
 
       <div className="app__posts">
             <div className="app_postsCenter">
-                  {
-                posts.map(({id, post}) => (
-                  <Post key={id} postId={id} user={user} username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
+              {search.length >= 3 ? searchPosts.length > 0 ?
+              
+              
+                searchPosts.map(({id, post}) => (
+                  <Post key={id} postId={id} user={user} username={post.username} restaurant={post.restaurant} price={post.price} rating={post.rating} caption={post.caption} imageUrl={post.imageUrl} />
                 ))
-              }
+              :
+               <p>Zero Results</p>
+
+
+              
+              :
+
+                posts.map(({id, post}) => (
+                  <Post key={id} postId={id} user={user} username={post.username} restaurant={post.restaurant} price={post.price} rating={post.rating} caption={post.caption} imageUrl={post.imageUrl} />
+                ))
+              
+            }
+              
+              {/* {
+                posts.map(({id, post}) => (
+                  <Post key={id} postId={id} user={user} username={post.username} restaurant={post.restaurant} price={post.price} rating={post.rating} caption={post.caption} imageUrl={post.imageUrl} />
+                ))
+              } */}
             </div>
 
       </div>

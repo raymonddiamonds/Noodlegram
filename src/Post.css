@@ -17,6 +17,12 @@
     padding: 20px;
 }
 
+.post__details {
+    font-weight: normal;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
 .post__header{
     display: flex; /*puts it in to a rows */
     align-items: center;

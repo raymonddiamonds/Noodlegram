@@ -4,7 +4,7 @@ import Avatar from "@material-ui/core/Avatar";
 import { db } from './firebase';
 import firebase from 'firebase';
 
-function Post({postId, user, username, caption, imageUrl}) {
+function Post({postId, user, username, restaurant, price, rating, caption, imageUrl}) {
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
 
@@ -48,11 +48,16 @@ function Post({postId, user, username, caption, imageUrl}) {
                 <h3>{username}</h3>
             </div>
             
-            {/* image */}
-            <img className="post__image" src={imageUrl} />
+            <img className="post__image" src={imageUrl} /> {/* image */}
+
+            <div className="post__details">
+                
+                <p>{`📍 ${restaurant}`}</p>
+                <p>{`💰 ${price}`}</p>
+                <p>{`🍜 ${rating}`} </p>
+            </div>
             
-            {/* username + caption */}
-            <h4 className="post__text"><strong>{username}</strong> {caption}</h4>
+            <h4 className="post__text"><strong>{username}</strong> {caption}</h4> {/* username + caption */}
             
             <div className="post__comments">
                 
@@ -62,6 +67,8 @@ function Post({postId, user, username, caption, imageUrl}) {
                     </p>
                 ))}
             </div>
+
+
 
             {user && (
                 <form className="post__commentBox">
