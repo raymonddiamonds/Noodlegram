@@ -19,6 +19,10 @@ function ImageUpload({username}) {
     }
 
     const handleSubmit = () => {
+        if(image == null || restaurant.length == 0 || price.length == 0 || rating.length == 0 || caption.length == 0) {
+            alert("Please fill out missing inputs");
+            return;
+        }
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
         uploadTask.on(
             "state_changed",
