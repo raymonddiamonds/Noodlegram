@@ -22,11 +22,65 @@
 
 .app__headerImage {
   object-fit: contain;
+  margin-top: 5px;
+  height: 40px;
+  width: 40px;
+  /* margin-left: auto; */
 }
+
+.app__textfield {
+  margin-bottom: 50px;
+}
+
+.app__loginContainer {
+  margin-top: 5px;
+  float: right; 
+}
+
+.app__logedInContainer {
+  float:right;
+}
+
+.app__searchBar {
+  width: 500px;
+  padding-left: 10px;
+  margin-left: 175px ; 
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid lightgray;
+  /* margin: 20px; */
+  /* float: left; */
+  /* justify-content: center; */
+}
+
+.app__searchBarLoggedIn {
+  width: 500px;
+  padding-left: 10px;
+  margin-left: 110px ; 
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid lightgray;
+}
+
+
+.app__footer{
+  background-color: white;
+  border-top: 1px solid lightgray;
+  padding: 10px;
+  object-fit: contain;  /*regardless of how big it gets, keep aspect ratio - no stretch or weird size/prop*/
+  display: flex;
+  justify-content:center;
+   align-items:center;
+}
+
+
 
 .app__signup {
   display: flex;
   flex-direction: column;
+  margin-right: auto;
 }
 
 .app__posts {

@@ -4,8 +4,11 @@ import Post from './Post';
 import { db, auth } from './firebase';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { Button, Input } from '@material-ui/core';
+import { Button, Input, TextField } from '@material-ui/core';
 import ImageUpload from './ImageUpload';
+
+// ASSETS:
+import logo from './noodles.png';
 
 function getModalStyle() {
   const top = 50;
@@ -131,6 +134,15 @@ function App() {
     setOpenSignIn(false);
   }
 
+  const style = {
+    height: "0",
+    width: '400',
+    marginTop: '0px',
+    marginBottom: "0px",
+    marginLeft: "10px",
+    padding: "0px"
+  }
+
   return (
     <div className="app">
 
@@ -202,24 +214,37 @@ function App() {
       
       <div className="app__header"> 
 
-        <img
-          className="app__headerImage"
-          src="https://en.instagram-brand.com/wp-content/themes/ig-branding/prj-ig-branding/assets/images/ig-logo-black.svg"
-          alt=""
-        />
+          <img
+            className="app__headerImage"
+            src={logo}
+            alt=""
+          />
+          
+          { user ?
+            (
+            <input type="search" className="app__searchBarLoggedIn" placeholder='Search restaurant, caption...' value={search} onChange={(e) => smartSearch(e.target.value.toLowerCase())}/>
+            )
+            : (
+            <input type="search" className="app__searchBar" placeholder='Search restaurant, caption...' value={search} onChange={(e) => smartSearch(e.target.value.toLowerCase())}/>
+            )
+          }
+ 
+          {/* {<TextField className="app__textfield" label="Search noodles..." margin="normal" variant="outlined" style={style}/>} */}
 
-        <input type="search" value={search} onChange={(e) => smartSearch(e.target.value.toLowerCase())}/>
 
-        <Button onClick={() => setOpenUpload(true)}>Upload</Button>
+        {user ?  (
+          <div className="app__logedInContainer">
+            <Button onClick={() => setOpenUpload(true)}>Upload</Button>
+            <Button onClick={() => auth.signOut()}>Logout</Button>
+          </div>
+            ) : (
+            <div className="app__loginContainer">
+              <Button onClick={() => setOpenUpload(true)}>Upload</Button>
+              <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
+              <Button onClick={() => setOpen(true)}>Sign Up</Button>
+          </div>
+        )}
 
-      {user ?  (
-        <Button onClick={() => auth.signOut()}>Logout</Button>
-          ) : (
-          <div className="app__loginContainer">
-            <Button onClick={() => setOpenSignIn(true)}>Sign In</Button>
-            <Button onClick={() => setOpen(true)}>Sign Up</Button>
-        </div>
-      )}
       </div> 
 
       <div className="app__posts">
@@ -250,13 +275,16 @@ function App() {
 
       </div>
 
+      <div className="app__footer">
+          <h4>Made with ❤️ in Canada</h4>
+      </div>
 
 
-      {user?.displayName ?(
+      {/* {user?.displayName ?(
         <ImageUpload username={user.displayName} />
       ) : (
         <h3>Sorry you need to login to upload</h3>
-      )}
+      )} */}
 
     </div>
       

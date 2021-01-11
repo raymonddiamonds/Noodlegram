@@ -59,14 +59,19 @@ function Post({postId, user, username, restaurant, price, rating, caption, image
             
             <h4 className="post__text"><strong>{username}</strong> {caption}</h4> {/* username + caption */}
             
-            <div className="post__comments">
+            
+            { comments.length > 0 ?
+                <div className="post__comments">
                 
-                {comments.map((comment) => (
-                    <p>
-                        <strong>{comment.username}</strong> {comment.text}
-                    </p>
-                ))}
-            </div>
+                    {comments.map((comment) => (
+                        <p>
+                            <strong>{comment.username}</strong> {comment.text}
+                        </p>
+                    ))} 
+                    
+                </div>
+                : null
+            }
 
 
 
