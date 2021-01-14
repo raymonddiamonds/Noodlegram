@@ -4,7 +4,7 @@ This is my code for the [Shopify Summer 2021 Internship application](https://doc
 
 [Noodlegram](https://image-repo-efa7d.web.app/) is deployed here: https://image-repo-efa7d.web.app/
 
-##Usage:
+## Usage:
 
 
 
