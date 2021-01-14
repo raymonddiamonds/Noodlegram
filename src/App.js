@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Post from './Post';
 import { db, auth } from './firebase';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Button, Input, TextField } from '@material-ui/core';
 import ImageUpload from './ImageUpload';
+import Footer from './Footer';
 
 // ASSETS:
 import logo from './noodles.png';
@@ -213,12 +215,13 @@ function App() {
       </Modal>
       
       <div className="app__header"> 
-
-          <img
-            className="app__headerImage"
-            src={logo}
-            alt=""
-          />
+          <Link to="/">
+            <img
+              className="app__headerImage"
+              src={logo}
+              alt=""
+            />
+          </Link>
           
           { user ?
             (
@@ -248,10 +251,8 @@ function App() {
       </div> 
 
       <div className="app__posts">
-            <div className="app_postsCenter">
+            <div className="app_postsLeft">
               {search.length >= 3 ? searchPosts.length > 0 ?
-              
-              
                 searchPosts.map(({id, post}) => (
                   <Post key={id} postId={id} user={user} username={post.username} restaurant={post.restaurant} price={post.price} rating={post.rating} caption={post.caption} imageUrl={post.imageUrl} />
                 ))
@@ -264,20 +265,17 @@ function App() {
                   <Post key={id} postId={id} user={user} username={post.username} restaurant={post.restaurant} price={post.price} rating={post.rating} caption={post.caption} imageUrl={post.imageUrl} />
                 ))
               
-            }
-              
-              {/* {
-                posts.map(({id, post}) => (
-                  <Post key={id} postId={id} user={user} username={post.username} restaurant={post.restaurant} price={post.price} rating={post.rating} caption={post.caption} imageUrl={post.imageUrl} />
-                ))
-              } */}
+              }
             </div>
 
+
       </div>
 
-      <div className="app__footer">
-          <h4>Made with ❤️ in Canada</h4>
-      </div>
+      {/* <div className="app__footer">
+          <p>Made with ❤️ in Canada</p>
+      </div> */}
+
+      <Footer></Footer>
 
 
       {/* {user?.displayName ?(

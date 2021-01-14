@@ -11,6 +11,7 @@ function ImageUpload({username}) {
     const [price, setPrice] = useState('');
     const [rating, setRating] = useState('');
     const [caption, setCaption] = useState('');
+    const [complete, setComplete] = useState(false);
 
     const handleChange = (e) => {
         if(e.target.files[0]) {
@@ -19,6 +20,7 @@ function ImageUpload({username}) {
     }
 
     const handleSubmit = () => {
+        setComplete(false);
         if(image === null || restaurant.length === 0 || price.length === 0 || rating.length === 0 || caption.length === 0) {
             alert("Please fill out missing inputs");
             return;
@@ -31,6 +33,7 @@ function ImageUpload({username}) {
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
                 );
                 setProgress(progress);
+                
             },
             (error) => {
                 // Error function
@@ -58,6 +61,11 @@ function ImageUpload({username}) {
                         setProgress(0);
                         setCaption('');
                         setImage(null);
+                        setRestaurant('');
+                        setPrice('');
+                        setRating('');
+                        setImage(null);
+                        setComplete(true);
                     })
             }
         )
@@ -69,6 +77,7 @@ function ImageUpload({username}) {
             {/* File picker */}
             {/* Submit/post button */}
 
+            { complete ? <p>Upload complete</p> : null}
             <progress className="imageupload__progress" value={progress} max="100" />
             <input type="text" placeholder='Enter a restaurant' onChange={event => setRestaurant(event.target.value)} value={restaurant}/>
 
@@ -87,7 +96,7 @@ function ImageUpload({username}) {
             </select>
 
             <input type="text" placeholder='Enter a caption' onChange={event => setCaption(event.target.value)} value={caption}/>
-            <input type="file" onChange={handleChange} />
+            <input type="file" accept="image/*" onChange={handleChange} />
             <Button onClick={handleSubmit}>
                  Upload
             </Button>

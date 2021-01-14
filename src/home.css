@@ -1,14 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
 * {
     margin: 0;
   }
 
+  .root {
+      height: 100vh;
+      height: calc(100% - 60px);
+  }
+
   .home {
+    position: relative;
     background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
   }
 
   .home__header{
     background-color: white;
-    padding: 20px;
+    padding: 15px;
     border-bottom: 1px solid lightgray;
     object-fit: contain;  /*regardless of how big it gets, keep aspect ratio - no stretch or weird size/prop*/
     display: flex;
@@ -21,12 +32,21 @@
   .home__footer{
     background-color: white;
     border-top: 1px solid lightgray;
-    padding: 20px;
-    position: sticky;
+    padding: 20px 0 20px 0;
+    left: 0;
+    bottom: 0;
+    right:0;
+    height: 20px;
+    width: 100%;
     object-fit: contain;  /*regardless of how big it gets, keep aspect ratio - no stretch or weird size/prop*/
     display: flex;
     justify-content:center;
     align-items:center;
+    position: fixed;
+  }
+
+  .home__footerText {
+    margin-right: 15px;
   }
 
   .home__headerImage {
@@ -41,29 +61,57 @@
     float: left;
   }
 
+  .home__column {
+      background-color: #fafafa;
+      display: flex;
+    height: 100%;
+    flex:1;
+    position: fixed;
+    
+  }
+
   .home__text {
-      width: 400px;
-      height: 100px;
-      margin: auto;
+    float: left;
+    width: 35%;
+
+    display: flex;
+    align-items: center;
+    line-height: 50px;
+    text-align: center;
+
+    padding-left: 50px;
+    padding-right: 50px;
+    border-right: 1px solid lightgray;
+
+    font-family: 'Noto Sans, sans-serif';
+
+  }
+
+  .home__right {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    float: right;
+    width: 65%;
+  }
+
+  .home__button {
+      border: 1px solid lightgray;
   }
 
   .home__image {
     object-fit: contain;
-    display: block;
+    display: inline-block;
     margin-left: auto;
     margin-right: auto;
-    max-width: 50%;
+    max-width: 60%;
+    vertical-align: middle;
+
     /* max-height: 20%; */
-    opacity: 0.6;
+    opacity: 0.9;
     /* margin-top: 5px; */
 
     /* margin-left: auto; */
   }
 
-  .home__left {
-    width: 75%;
-  }
 
-  .home__right {
-    width: 25%;
-  }

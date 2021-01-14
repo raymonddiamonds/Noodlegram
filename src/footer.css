@@ -1,0 +1,15 @@
+.footer{
+    background-color: white;
+    border-top: 1px solid lightgray;
+    padding: 20px 0 20px 0;
+    left: 0;
+    bottom: 0;
+    right:0;
+    height: 20px;
+    width: 100%;
+    object-fit: contain;  /*regardless of how big it gets, keep aspect ratio - no stretch or weird size/prop*/
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    position: fixed;
+  }
