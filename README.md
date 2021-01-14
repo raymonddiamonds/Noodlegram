@@ -1,6 +1,6 @@
 # Shopify Internship Challenge
 
-This is my code for the Shopify Summer 2021 Internship interview.
+This is my code for the [Shopify Summer 2021 Internship application](https://docs.google.com/document/d/1ZKRywXQLZWOqVOHC4JkF3LqdpO3Llpfk_CkZPR8bjak/edit).
 
 This web app requires the following prerequisites to build:
 
