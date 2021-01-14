@@ -1,4 +1,6 @@
-# Shopify Internship Challenge
+# Shopify Internship Challenge - Noodlegram
+
+[Noodlegram](https://image-repo-efa7d.web.app/) is deployed here: https://image-repo-efa7d.web.app/
 
 This is my code for the [Shopify Summer 2021 Internship application](https://docs.google.com/document/d/1ZKRywXQLZWOqVOHC4JkF3LqdpO3Llpfk_CkZPR8bjak/edit).
 
