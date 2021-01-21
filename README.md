@@ -37,9 +37,7 @@ module.exports = keys;
 
 This will begin an instance of the server on `http://localhost:3000/` by default. You can test the endpoint using [Postman](https://www.getpostman.com).
 
-To run tests, run `npm run-script test`, and make sure you're in the `src` directory.
-
-To access documentation, perform steps 1 through 4 and visit `http://localhost:5000/api-docs` which was generated through `express-swagger-generator`.
+TBA: To run tests, run `npm run-script test`, and make sure you're in the `src` directory.
 
 Here's a brief description of the scope of this project:
 
@@ -92,7 +90,7 @@ date: Date
 - Profile
   - An additional feature would be to have individual `User` profiles and retrieve all photos uploaded by an individual user 
 - Bulk operations
-  - To perform bulk operations, namely add or delete, you could call the single deletion API numerous times, or create a similar endpoint but use `Promise.all` to wait for all requests to complete
+  - To perform bulk operations, namely adding and deleting
 - React.js
   - Modularize components further so that the app can be run more efficiently
 - Documentation
